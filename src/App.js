@@ -2,35 +2,42 @@ import "./App.css";
 import { Component } from "react";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // realizando o bind pra usar um this dentro de uma função ( resolve problema com this)
-    // this.handlePClick = this.handlePClick.bind(this);
-    // pra resolver o bind, usamos as funções como arrow functions, já que elas não possuem this
-    // procuraram nos seus pais, ou seja, é um hackzin pra usar this sem bind.
-
-    // é possível apagar o this abaixo, e o suepr e o construtor, com uma coisa chamada "class fields do react"
-    this.state = {
-      name: "lazarok09",
-      counter: 0,
-    };
-  }
-  // funções
-
-  handleCounter = () => {
-    // capiturando o contador do estado
-    const { counter } = this.state;
-    // inserindo novo valor
-    this.setState({ counter: counter + 1 });
+  state = {
+    name: " lazarok09",
+    // temos uma chave, que contém um array com objetos
+    posts: [
+      {
+        id: 1,
+        title: "futebool",
+        description: "o melhor esporte do Brasil",
+      },
+      {
+        id: 2,
+        title: "Handeibol",
+        description: "Esporte que joga com as mãos",
+      },
+      {
+        id: 3,
+        title: "Natação",
+        description: "Esporte em que tem contato com a água",
+      },
+    ],
   };
   render() {
-    const { counter } = this.state;
+    const { name } = this.state;
+    const { posts } = this.state;
     return (
       <div className="App">
         {/* evento sintético */}
-        <p onClick={this.handleCounter}>
-          Contador em componente de classe hehe : {counter}
-        </p>
+        {/*  iterando sobre os posts */}
+        <p>User : {name}</p>
+        {posts.map((post) => (
+          // o key ajuda o react a identificar rapidamente os elementos para fins de otimização
+          <div key={post.id}>
+            <h1>{post.title}</h1>
+            <h2>{post.description}</h2>
+          </div>
+        ))}
       </div>
     );
   }
