@@ -1,0 +1,24 @@
+button {
+  position: absolute;
+  position: fixed;
+  height: 3rem;
+  width: 10rem;
+  background: darkblue;
+  color: white;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+button:hover {
+  transform: scale(1.05);
+}
+
+button:disabled:hover {
+  transform: scale(1);
+}
+button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}

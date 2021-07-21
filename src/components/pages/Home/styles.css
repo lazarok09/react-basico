@@ -1,11 +1,9 @@
-.App {
-  width: 80vw;
-  margin: 0 auto;
+#posts-container div {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 30px;
 }
 
-.App img {
+#posts-container img {
   max-width: 100%;
 }
