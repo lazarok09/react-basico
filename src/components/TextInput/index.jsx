@@ -3,7 +3,11 @@ import "./styles.css";
 export const TextInput = ({ searchValue, handleInput }) => {
   return (
     <>
-      <label for="search">
+      <label id="label-search-container" for="search">
+        <p>
+          Search{" : "}
+          {!!searchValue && <span>{searchValue}</span>}
+        </p>
         <input
           id="search"
           type="search"

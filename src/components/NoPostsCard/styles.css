@@ -1,0 +1,21 @@
+#card-container {
+  background: rgb(207, 199, 189);
+  height: 90vh;
+  width: 90vw;
+  font-size: 4rem;
+}
+#card-container p {
+  padding: 2rem;
+  width: 80vw;
+}
+@media (min-width: 300px) and (max-width: 700px) {
+  #card-container {
+    height: 100vh;
+    font-size: 3rem;
+  }
+}
+@media (max-width: 400px) {
+  #card-container {
+    font-size: 2rem;
+  }
+}

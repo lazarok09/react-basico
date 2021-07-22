@@ -1,5 +1,10 @@
+#button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 button {
-  position: absolute;
+  margin: 1rem 0;
   height: 3rem;
   width: 10rem;
   background: darkblue;

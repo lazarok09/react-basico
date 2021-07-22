@@ -8,6 +8,7 @@ import { loadPosts } from "../../utils/load-posts";
 import { Posts } from "../../Posts";
 import { Button } from "../../Button";
 import { TextInput } from "../../TextInput";
+import { NoPostsCard } from "../../NoPostsCard";
 
 class Home extends Component {
   state = {
@@ -69,7 +70,6 @@ class Home extends Component {
     const { value } = event.target;
     this.setState({ searchValue: value });
     const { searchValue } = this.state;
-    console.log(searchValue);
   };
 
   render() {
@@ -91,35 +91,48 @@ class Home extends Component {
     const noMorePosts = page + postsPerPage >= allPosts.length;
     // noMorePosts é uma boolean por conta do uso de duas comparações (>=);
     return (
-      <section id="posts-container">
-        {
-          // se searchValue tem algo faça ->
-          !!searchValue && <h1>Search : {searchValue}</h1>
-        }
-        <TextInput searchValue={searchValue} handleInput={this.handleInput} />
-        {
-          // Se searchValue não tem nada faça ->
-          !searchValue && (
-            <Button
-              onClick={this.loadMorePosts}
-              text={"Mais Posts"}
-              value={searchValue}
-              disabled={noMorePosts}
-            />
-          )
-        }
-
-        {
-          // se nos posts filtrados encontramos algo renderize
-          filteredPosts.length > 0 && <Posts posts={filteredPosts} />
-        }
-        {
-          // caso não exista post filtrado retorna um parágrafo
-          filteredPosts.length === 0 && (
-            <p>Não possuímos posts com esse título :(</p>
-          )
-        }
-      </section>
+      <>
+        <header id="header">
+          <TextInput searchValue={searchValue} handleInput={this.handleInput} />
+          <div id="button-more-posts">
+            {
+              // Se searchValue não tem nada faça ->
+              !searchValue && (
+                <Button
+                  onClick={this.loadMorePosts}
+                  text={"Mais Posts"}
+                  value={searchValue}
+                  disabled={noMorePosts}
+                />
+              )
+            }
+          </div>
+        </header>
+        <section id="posts-container">
+          {
+            // se nos posts filtrados encontramos algo renderize
+            filteredPosts.length > 0 && <Posts posts={filteredPosts} />
+          }
+          {
+            // caso não exista post filtrado retorna um parágrafo
+            filteredPosts.length === 0 && <NoPostsCard />
+          }
+        </section>
+        <footer>
+          {
+            // Se searchValue não tem nada faça ->
+            !searchValue && (
+              <a href="#header">
+                <Button
+                  onClick={() => {}}
+                  text={"Voltar para cima"}
+                  disabled={noMorePosts}
+                />
+              </a>
+            )
+          }
+        </footer>
+      </>
     );
   }
 }
