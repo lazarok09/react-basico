@@ -7,6 +7,7 @@ import { loadPosts } from "../../utils/load-posts";
 /* components */
 import { Posts } from "../../Posts";
 import { Button } from "../../Button";
+import { TextInput } from "../../TextInput";
 
 class Home extends Component {
   state = {
@@ -15,6 +16,8 @@ class Home extends Component {
     allPosts: [],
     page: 0,
     postsPerPage: 2,
+    // criação de estado pra salvar o value do input
+    searchValue: ''
   };
 
   // renderiza o componente, por ter promise usa async await
@@ -62,21 +65,69 @@ class Home extends Component {
     // Ao final do estado setado, page que era 0 agora receberá a próxima página.
   };
 
+  handleInput = (event) => {
+    const { value } = event.target
+    this.setState({ searchValue: value})
+    const { searchValue} = this.state
+    console.log(searchValue)
+  }
+  
   render() {
     // recuperando variáveis do estado
-    const { posts, page, postsPerPage, allPosts } = this.state;
+    const { posts, page, postsPerPage, allPosts, searchValue} = this.state;
+    // criando atribuição de posts à filteredPosts
 
+    /* Se searchValue contém alguma coisa faça em todos os posts um filtro.
+    Para cada post em seu título minúsculo
+    Verifique se ele inclui o valorProcurado (searchValue) em minúsculo
+    Se contém, é retornado o post que contém aquele título se não, é retornado apenas a variável posts que vai ter 2 posts
+    O interessante do código é que searchValue só é true se alguém estiver pesquisando algo.*/
+    const filteredPosts = !!searchValue ?
+      allPosts.filter(post => {
+        return post.title.toLowerCase()
+        .includes(searchValue.toLowerCase());
+      })
+    : posts;
     // se a página que estou querendo ir for maior ou igual ao tamanho de todos os posts
     const noMorePosts = page + postsPerPage >= allPosts.length;
     // noMorePosts é uma boolean por conta do uso de duas comparações (>=);
     return (
       <section id="posts-container">
-        <Button
-          onClick={this.loadMorePosts}
-          text={"Mais Posts"}
-          disabled={noMorePosts}
-        />
-        <Posts posts={posts} />
+       {  // se searchValue tem algo faça ->
+          !!searchValue && (
+            <h1>Search : {searchValue}</h1>
+          )
+        }
+          <TextInput searchValue={searchValue}
+          handleInput={this.handleInput} />
+            {
+            // Se searchValue não tem nada faça ->
+          !searchValue && (
+            <Button
+              onClick={this.loadMorePosts}
+              text={"Mais Posts"}
+              value={searchValue}
+              disabled={noMorePosts}
+            />
+          )
+        }
+      
+       
+      
+         {
+          // se nos posts filtrados encontramos algo renderize
+          filteredPosts.length > 0 && (
+            <Posts posts={filteredPosts} />
+          )
+        }
+         {
+           // caso não exista post filtrado retorna um parágrafo
+          filteredPosts.length === 0 && (
+            <p>Não possuímos posts com esse título :(</p>
+          )
+        }
+        
+    
       </section>
     );
   }
