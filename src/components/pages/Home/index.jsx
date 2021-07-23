@@ -23,8 +23,8 @@ class Home extends Component {
 
   // renderiza o componente, por ter promise usa async await
   async componentDidMount() {
-    await this.loadPosts();
     // faz referência a função criada na raiz do código e não na importada
+    await this.loadPosts();
   }
 
   // função que busca postagens
@@ -69,7 +69,6 @@ class Home extends Component {
   handleInput = (event) => {
     const { value } = event.target;
     this.setState({ searchValue: value });
-    const { searchValue } = this.state;
   };
 
   render() {
@@ -115,7 +114,7 @@ class Home extends Component {
           }
           {
             // caso não exista post filtrado retorna um parágrafo
-            filteredPosts.length === 0 && <NoPostsCard />
+            allPosts.length > 0 && filteredPosts.length === 0 && <NoPostsCard />
           }
         </section>
         <footer>
