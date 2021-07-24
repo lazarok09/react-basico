@@ -6,8 +6,8 @@
 button {
   margin: 1rem 0;
   height: 3rem;
-  width: 10rem;
-  background: darkblue;
+  width: 14rem;
+  background: #085752;
   color: white;
   border-radius: 1.5rem;
   font-weight: bold;
@@ -17,6 +17,7 @@ button {
 }
 button:hover {
   transform: scale(1.05);
+  font-size: 1.1rem;
 }
 
 button:disabled:hover {
@@ -25,4 +26,13 @@ button:disabled:hover {
 button:disabled {
   background: gray;
   cursor: not-allowed;
+}
+@media (min-width: 400px) and (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+  button:hover {
+    transform: scale(1.1);
+    font-size: 1.2rem;
+  }
 }

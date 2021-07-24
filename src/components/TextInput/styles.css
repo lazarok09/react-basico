@@ -4,10 +4,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(247, 243, 253);
+  background: rgb(1, 68, 82);
+  background: linear-gradient(
+    90deg,
+    rgba(1, 68, 82, 1) 0%,
+    rgba(200, 245, 120, 1) 26%,
+    rgba(141, 221, 126, 1) 70%,
+    rgba(1, 68, 82, 1) 100%
+  );
 }
 #label-search-container > p {
-  color: rgb(20, 23, 44);
+  color: rgb(255, 255, 255);
   padding: 1rem;
   font-size: 2rem;
   font-weight: bold;
