@@ -1,4 +1,4 @@
-const { render, screen } = require("@testing-library/react");
+const { render, screen, fireEvent } = require("@testing-library/react");
 import userEvent from "@testing-library/user-event";
 import { Button } from "./index.jsx";
 
@@ -41,5 +41,12 @@ describe("<Button />", () => {
     const button = screen.getByRole("button", { name: /mais posts/i });
 
     expect(button).toBeEnabled();
+  });
+  it("should match snapshot", () => {
+    const fn = jest.fn();
+    const { container } = render(
+      <Button text="mais posts" disabled={false} onClick={fn} />
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
