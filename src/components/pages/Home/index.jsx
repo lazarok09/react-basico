@@ -40,7 +40,7 @@ export const Home = () => {
     handleLoadPosts(0, postsPerPage);
   }, [handleLoadPosts, postsPerPage]);
 
-  const handleInput = (event) => {
+  const handleChange = (event) => {
     const { value } = event.target;
     setSearchValue(value);
   };
@@ -56,7 +56,7 @@ export const Home = () => {
   return (
     <>
       <header id="header">
-        <TextInput searchValue={searchValue} handleInput={handleInput} />
+        <TextInput searchValue={searchValue} handleChange={handleChange} />
         <div id="button-more-posts">
           {
             // Se searchValue não tem nada faça ->

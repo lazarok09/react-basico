@@ -1,6 +1,6 @@
 import "./styles.css";
 
-export const TextInput = ({ searchValue, handleInput }) => {
+export const TextInput = ({ searchValue, handleChange }) => {
   return (
     <>
       <label id="label-search-container" htmlFor="search">
@@ -11,7 +11,7 @@ export const TextInput = ({ searchValue, handleInput }) => {
         <input
           id="search"
           type="search"
-          onChange={handleInput}
+          onChange={handleChange}
           value={searchValue}
           placeholder="Type your search"
         />
