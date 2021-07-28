@@ -1,21 +1,21 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
-import "./styles.css";
+import './styles.css';
 
 /* utilis ( functions ) */
-import { loadPosts } from "../../utils/load-posts";
+import { loadPosts } from '../../../utils/load-posts';
 /* components */
-import { Posts } from "../../Posts";
-import { Button } from "../../Button";
-import { TextInput } from "../../TextInput";
-import { NoPostsCard } from "../../NoPostsCard";
+import { Posts } from '../../Posts';
+import { Button } from '../../Button';
+import { TextInput } from '../../TextInput';
+import { NoPostsCard } from '../../NoPostsCard';
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [postsPerPage] = useState(2);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   // função que busca postagens
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
@@ -36,7 +36,7 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    console.log(new Date().toLocaleString("pt-BR"));
+    console.log(new Date().toLocaleString('pt-BR'));
     handleLoadPosts(0, postsPerPage);
   }, [handleLoadPosts, postsPerPage]);
 
@@ -45,7 +45,7 @@ export const Home = () => {
     setSearchValue(value);
   };
 
-  const filteredPosts = !!searchValue
+  const filteredPosts = searchValue
     ? allPosts.filter((post) => {
         return post.title.toLowerCase().includes(searchValue.toLowerCase());
       })
@@ -61,12 +61,7 @@ export const Home = () => {
           {
             // Se searchValue não tem nada faça ->
             !searchValue && (
-              <Button
-                onClick={loadMorePosts}
-                text={"Mais Posts"}
-                value={searchValue}
-                disabled={noMorePosts}
-              />
+              <Button onClick={loadMorePosts} text={'Mais Posts'} value={searchValue} disabled={noMorePosts} />
             )
           }
         </div>
@@ -86,11 +81,7 @@ export const Home = () => {
           // Se searchValue não tem nada faça ->
           !searchValue && (
             <a href="#header">
-              <Button
-                onClick={() => {}}
-                text={"Voltar para cima"}
-                disabled={noMorePosts}
-              />
+              <Button onClick={() => {}} text={'Voltar para cima'} disabled={noMorePosts} />
             </a>
           )
         }

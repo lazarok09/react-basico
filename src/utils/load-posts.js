@@ -1,6 +1,6 @@
 export const loadPosts = async () => {
-  const postsResponse = fetch("https://jsonplaceholder.typicode.com/posts");
-  const photosResponse = fetch("https://jsonplaceholder.typicode.com/photos");
+  const postsResponse = fetch('https://jsonplaceholder.typicode.com/posts');
+  const photosResponse = fetch('https://jsonplaceholder.typicode.com/photos');
   // Um array com chave posts e photos recebe as promessas resolvidas das requisições
   const [posts, photos] = await Promise.all([postsResponse, photosResponse]);
   // posts e photos também são promises por isso precisamos do await na passagem de promise para JSON.
