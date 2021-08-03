@@ -5,10 +5,10 @@ export const TextInput = ({ searchValue, handleChange }) => {
   return (
     <>
       <label id="label-search-container" htmlFor="search">
-        <p>
+        <h1>
           Search{' : '}
-          {!!searchValue && <span>{searchValue}</span>}
-        </p>
+          {!!searchValue && searchValue}
+        </h1>
         <input id="search" type="search" onChange={handleChange} value={searchValue} placeholder="Type your search" />
       </label>
     </>

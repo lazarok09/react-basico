@@ -5,10 +5,10 @@ exports[`<TextInput /> should match snapshot 1`] = `
   for="search"
   id="label-search-container"
 >
-  <p>
+  <h1>
     Search
      : 
-  </p>
+  </h1>
   <input
     id="search"
     placeholder="Type your search"

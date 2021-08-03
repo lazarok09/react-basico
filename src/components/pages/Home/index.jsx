@@ -73,7 +73,7 @@ export const Home = () => {
         }
         {
           // caso não exista post filtrado retorna um parágrafo
-          allPosts.length > 0 && filteredPosts.length === 0 && <NoPostsCard />
+          filteredPosts.length === 0 && <NoPostsCard />
         }
       </section>
       <footer>

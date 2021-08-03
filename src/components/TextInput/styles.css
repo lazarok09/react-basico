@@ -13,16 +13,14 @@
     rgba(1, 68, 82, 1) 100%
   );
 }
-#label-search-container > p {
+#label-search-container > h1 {
   color: rgb(255, 255, 255);
   padding: 1rem;
   font-size: 2rem;
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
 }
-#label-search-container p span {
-  color: rgb(55, 20, 180);
-}
+
 #label-search-container:hover {
   cursor: pointer;
 }
